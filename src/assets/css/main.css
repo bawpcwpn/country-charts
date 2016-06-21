@@ -750,8 +750,16 @@ form .form-row .two-thirds:after,
 .centred {
   text-align: center;
 }
-.results-table {
+/*******************
+    Table
+********************/
+.table-container {
   margin: 50px 0;
+  position: relative;
+  padding: 40px 0;
+}
+.results-table {
+  width: 100%;
 }
 .results-table th,
 .results-table td {
@@ -762,21 +770,41 @@ form .form-row .two-thirds:after,
 .results-table tr:nth-child(even) td {
   background: #F2F2F2;
 }
+.results-table thead,
+.results-table tfoot {
+  left: 0;
+  width: 100%;
+}
+.results-table thead {
+  top: 0;
+}
 .results-table thead tr th {
   border-bottom: 2px solid #333333;
+  cursor: pointer;
 }
-.results-table thead tr th:nth-child(3) {
+.results-table thead tr th:nth-child(3),
+.results-table thead tr th:nth-child(4) {
   text-align: right;
 }
-.results-table tbody td:nth-child(3) {
+.results-table tbody {
+  height: 400px !important;
+  overflow: scroll;
+}
+.results-table tbody td:nth-child(3),
+.results-table tbody td:nth-child(4) {
   text-align: right;
+}
+.results-table tfoot {
+  bottom: 0;
 }
 .results-table tfoot tr td,
 .results-table tfoot tr th {
   border-top: 1px solid #333333;
 }
-.results-table tfoot tr td:last-child,
-.results-table tfoot tr th:last-child {
+.results-table tfoot tr td:nth-child(3),
+.results-table tfoot tr th:nth-child(3),
+.results-table tfoot tr td:nth-child(4),
+.results-table tfoot tr th:nth-child(4) {
   text-align: right;
 }
 /***********

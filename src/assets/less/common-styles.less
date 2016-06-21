@@ -38,10 +38,18 @@
 }
 
 
+/*******************
+    Table
+********************/
+
+.table-container {
+    margin: 50px 0;
+    position: relative;
+    padding: 40px 0;
+}
 
 .results-table {
-    margin: 50px 0;
-
+    width: 100%;
 
     th, td {
         padding: 8px 10px;
@@ -56,28 +64,42 @@
         }
     }
 
+    thead,
+    tfoot {
+        left: 0;
+        width: 100%;
+    }
+
     thead {
+        top: 0;
         tr {
             th {
                 border-bottom: 2px solid @grey3;
-                &:nth-child(3) {
+                cursor: pointer;
+                &:nth-child(3),
+                &:nth-child(4) {
                     text-align: right;
                 }
             }
         }
     }
     tbody {
+        height: 400px !important;
+        overflow: scroll;
         td {
-            &:nth-child(3) {
+            &:nth-child(3),
+            &:nth-child(4) {
                 text-align: right;
             }
         }
     }
     tfoot {
+        bottom: 0;
         tr {
             td, th {
                 border-top: 1px solid @grey3;
-                &:last-child {
+                &:nth-child(3),
+                &:nth-child(4) {
                     text-align: right;
                 }
             }

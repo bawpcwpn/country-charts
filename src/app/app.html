@@ -20,26 +20,26 @@
                     <div class="form-row">
                         <div class="control-group third">
                             <label for="continent">Continent</label>
-                            <select id="continent">
+                            <select id="continent" [ngModel]="continentSelect" (ngModelChange)="onContinentSelectChange($event)">
                                 <option selected value="all">All</option>
                                 <option *ngFor="let continent of continents" value="{{ continent }}">{{ continent }}</option>
                             </select>
                         </div>
                         <div class="control-group third">
                             <label for="metric">Metric</label>
-                            <select id="metric">
+                            <select id="metric" [ngModel]="metricSelect" (ngModelChange)="onMetricSelectChange($event)">
                                 <option selected value="all">All</option>
-                                <option selected value="areaInSquareKm">Area in KM&sup2;</option>
-                                <option selected value="population">Population</option>
+                                <option value="areaInSqKm">areaInSqKm</option>
+                                <option value="population">Population</option>
                             </select>
                         </div>
                         <div class="control-group third">
                             <label for="max_results">Max Results</label>
-                            <select id="max_results">
+                            <select id="max_results" [ngModel]="resultsSelect" (ngModelChange)="onResultsSelectChange($event)">
                                 <option selected value="5">5</option>
-                                <option selected value="10">10</option>
-                                <option selected value="15">15</option>
-                                <option selected value="20">20</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
                             </select>
                         </div>
                     </div>
@@ -47,33 +47,37 @@
 
 
                 <section class="results">
-                    [Pie Chart]
-                    [Table]
+                    [Pie Chart]<br />
 
+                    <div class="table-container">
+                        <table class="results-table">
+                            <thead>
+                            <tr>
+                                <th (click)="sortTable('continentName')">continentName</th>
+                                <th (click)="sortTable('countryName')">countryName</th>
+                                <th (click)="sortTable('areaInSqKm')" *ngIf="areaColVisible">areaInSqKm</th>
+                                <th (click)="sortTable('population')" *ngIf="populationColVisible">population</th>
+                            </tr>
+                            </thead>
+                            <tbody (OnScrollMethod)="moreTableResults()" ScrollDistance="3" InfiniteScroll="InfiniteScroll">
+                            <tr *ngFor="let country of filteredCountries">
+                                <td>{{ country.countryCode }}</td>
+                                <td>{{ country.countryName }}</td>
+                                <td *ngIf="areaColVisible">{{ country.areaInSqKm }}</td>
+                                <td *ngIf="populationColVisible">{{ country.population }}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <th>TOTAL</th>
+                                <td *ngIf="areaColVisible">{{ getAreaInSqKmTotal }}</td>
+                                <td *ngIf="populationColVisible">{{ getPopulationTotal }}</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
 
-                    <table class="results-table">
-                        <thead>
-                        <tr>
-                            <th>continentName</th>
-                            <th>countryName</th>
-                            <th>population</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr *ngFor="let country of sortedCountries">
-                            <td>{{ country.countryCode }}</td>
-                            <td>{{ country.countryName }}</td>
-                            <td>{{ country.population }}</td>
-                        </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <th>TOTAL</th>
-                            <td>{{ totalPopulation }}</td>
-                        </tr>
-                        </tfoot>
-                    </table>
                 </section>
             </div>
 
