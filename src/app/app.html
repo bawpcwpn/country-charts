@@ -1,1 +1,57 @@
-<h1>Hydrane AngularJS Frontend Dev CS</h1>
+<header>
+    <div class="wrapper">
+        <h1>Hydrane AngularJS Frontend Dev CS</h1>
+    </div>
+</header>
+
+<main class="content">
+    <div class="block">
+        <div class="wrapper">
+
+            <div class="centred">
+                <button class="btn btn-primary btn-large" *ngIf="!isContentActive" (click)="setContentActive(true)">Go</button>
+            </div>
+
+
+            <div *ngIf="isContentActive">
+                <h4>Filters</h4>
+
+                <div class="form">
+                    <div class="form-row">
+                        <div class="control-group third">
+                            <label for="continent">Continent</label>
+                            <select id="continent">
+                                <option selected value="all">All</option>
+                            </select>
+                        </div>
+                        <div class="control-group third">
+                            <label for="metric">Metric</label>
+                            <select id="metric">
+                                <option selected value="all">All</option>
+                                <option selected value="areaInSquareKm">Area in KM&sup2;</option>
+                                <option selected value="population">Population</option>
+                            </select>
+                        </div>
+                        <div class="control-group third">
+                            <label for="max_results">Max Results</label>
+                            <select id="max_results">
+                                <option selected value="5">5</option>
+                                <option selected value="10">10</option>
+                                <option selected value="15">15</option>
+                                <option selected value="20">20</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <section class="results">
+                    [Pie Chart]
+                    [Table]
+                </section>
+            </div>
+
+        </div>
+    </div>
+</main>
+

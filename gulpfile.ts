@@ -6,12 +6,24 @@ const tsc = require("gulp-typescript");
 const sourcemaps = require('gulp-sourcemaps');
 const tsProject = tsc.createProject("tsconfig.json");
 const tslint = require('gulp-tslint');
+const less = require('gulp-less');
+const path = require('path');
 
 /**
  * Remove build directory.
  */
 gulp.task('clean', (cb) => {
     return del(["build"], cb);
+});
+
+/**
+ * Compile Less Files
+ */
+
+gulp.task('less', function () {
+    return gulp.src('src/assets/less/main.less')
+        .pipe(less())
+        .pipe(gulp.dest('src/assets/css'));
 });
 
 /**
@@ -39,7 +51,7 @@ gulp.task("compile", ["tslint"], () => {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("resources", () => {
-    return gulp.src(["src/**/*", "!**/*.ts"])
+    return gulp.src(["src/**/*", "!**/*.ts", "!**/*.less"])
         .pipe(gulp.dest("build"));
 });
 
@@ -63,6 +75,9 @@ gulp.task("libs", () => {
  * Watch for changes in TypeScript, HTML and CSS files.
  */
 gulp.task('watch', function () {
+    gulp.watch(["src/assets/less/**/*.less"],['less']).on('change', function (e) {
+        console.log('Less file ' + e.path + ' has been changed. Compiling.');
+    });
     gulp.watch(["src/**/*.ts"], ['compile']).on('change', function (e) {
         console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
     });
@@ -74,6 +89,6 @@ gulp.task('watch', function () {
 /**
  * Build the project.
  */
-gulp.task("build", ['compile', 'resources', 'libs'], () => {
+gulp.task("build", ['less','compile', 'resources', 'libs'], () => {
     console.log("Building the project ...");
 });

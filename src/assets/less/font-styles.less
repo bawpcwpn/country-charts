@@ -1,0 +1,222 @@
+@charset "UTF-8";
+
+/****************
+    Fonts
+*****************/
+
+.OpenSans(@weight:400,@style:normal) {
+    .font-mixin(~"'Open Sans','Helvetica Neue','Helvetica',Arial,sans-serif", @weight, @style);
+}
+
+.defaultFont(@weight:400,@style:normal) {
+    .OpenSans(@weight, @style);
+}
+
+.secondaryFont(@weight:400,@style:normal) {
+    .OpenSans(@weight, @style);
+}
+
+/****************
+    Text Styles
+*****************/
+
+.defaultH1() {
+    margin: 40px 0;
+    font-size: 40px;
+    display: block;
+    color: @defaultH1;
+    font-weight: 700;
+    line-height: 110%;
+}
+
+.defaultH2() {
+    color: @defaultH2;
+    margin: 20px 0;
+    font-size: 30px;
+    font-weight: 700;
+    height: 115%;
+}
+
+.defaultH3() {
+    color: @defaultH3;
+    font-size: 20px;
+    margin: 30px 0 15px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.defaultH4() {
+    color: @defaultH4;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 120%;
+}
+
+.defaultH5() {
+    color: @defaultH5;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+}
+
+.defaultH6() {
+    color: @defaultH6;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.baseFontStyles() {
+    .defaultFont();
+    color: @defaultP;
+    font-size: 14px;
+}
+
+.defaultP() {
+    line-height: 145%;
+    margin: 0 0 25px 0;
+
+    strong {
+        font-weight: 700;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    &.intro {
+        font-size: 22px;
+        line-height: 135%;
+        color: @intro_colour;
+    }
+
+}
+
+.defaultA() {
+    color: @default_a_colour;
+    .transition(color, 0.1s);
+    text-decoration: none;
+    &:hover {
+        color: @default_a_hover_colour;
+        text-decoration: none;
+    }
+    &:active {
+        color: @default_a_active_colour;
+    }
+}
+
+.defaultLi() {
+    li {
+        .baseFontStyles();
+    }
+}
+
+.defaultUl {
+    padding-left: 30px;
+    list-style: disc;
+    margin: 15px 0;
+    .defaultLi();
+
+}
+
+.defaultOl {
+    list-style: decimal;
+    padding-left: 30px;
+    margin: 15px 0;
+    .defaultLi();
+}
+
+.defaultTable() {
+    width: 100%;
+    margin: 0 0 20px;
+}
+
+
+/**********************
+    Btn stylings
+***********************/
+
+
+.btn-base() {
+    .inline();
+    outline: none;
+    border: none;
+    overflow: visible;
+    cursor: pointer;
+}
+
+.btn {
+    .btn-base();
+    line-height: 120%;
+    text-transform: uppercase;
+    padding: 10px 17px;
+    font-size: 18px;
+    text-align: center;
+    .transition(all, 0.1s);
+    font-weight: 700;
+    .rounded(4px);
+}
+
+.btn-primary {
+    background: @primary_btn_bg;
+    color: @primary_btn_colour;
+    &:hover {
+        color: @primary_btn_colour_hover;
+        background: @primary_btn_bg_hover;
+    }
+    &:active {
+        color: @primary_btn_colour_active;
+        background: @primary_btn_bg_active;
+    }
+    &:disabled {
+        color: @primary_btn_colour_disabled;
+        background: @primary_btn_bg_disabled;
+    }
+}
+
+.btn-large {
+    padding: 18px 45px;
+    font-size: 22px;
+}
+
+/*
+ *  Print Styles are declaring them
+ */
+
+html, body {
+    .smooth();
+    .baseFontStyles();
+}
+
+h1 {
+    .defaultH1();
+}
+h2 {
+    .defaultH2();
+}
+h3 {
+    .defaultH3();
+}
+h4 {
+    .defaultH4();
+}
+h5 {
+    .defaultH5();
+}
+h6 {
+    .defaultH6();
+}
+p {
+    .defaultP();
+}
+a {
+    .defaultA();
+}
+ul {
+    .defaultUl();
+}
+ol {
+    .defaultOl();
+}
+table {
+    .defaultTable();
+}

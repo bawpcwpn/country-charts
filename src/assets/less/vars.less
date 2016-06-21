@@ -1,0 +1,247 @@
+@charset "UTF-8";
+
+/***********
+    Basic Colours
+************/
+
+@white: #FFFFFF;
+@black: #000000;
+@grey3: #333333;
+@grey6: #666666;
+@grey9: #999999;
+@greyD: #DDDDDD;
+@greyC: #CCCCCC;
+
+/**********/
+
+@img_dir: '../../images/';
+@plugin_dir: 'includes/plugins/';
+@components_dir: '../components/';
+
+/**************
+    Primary Colours
+*********************/
+
+@main_colour: cornflowerblue;
+@secondary_colour: mediumturqoise;
+
+@main_colour_alt: #000000;
+@secondary_colour_alt: #000000;
+
+
+/********************
+    Default Text Colours
+********************/
+
+@default_text_colour: #000000;
+@defaultH1: @main_colour;
+@defaultH2: @main_colour;
+@defaultH3: @default_text_colour;
+@defaultH4: @default_text_colour;
+@defaultH5: @default_text_colour;
+@defaultH6: @default_text_colour;
+@defaultP: @default_text_colour;
+
+@intro_colour: @default_text_colour;
+
+@default_a_colour: @main_colour;
+@default_a_hover_colour: lighten(@default_a_colour, 10%);
+@default_a_active_colour: darken(@default_a_colour, 10%);
+
+@primary_btn_colour: @white;
+@primary_btn_bg: @main_colour;
+@primary_btn_colour_hover: @primary_btn_colour;
+@primary_btn_bg_hover: lighten(@primary_btn_bg, 10%);
+@primary_btn_colour_active: @primary_btn_colour;
+@primary_btn_bg_active: darken(@primary_btn_bg, 10%);
+@primary_btn_colour_disabled: @greyC;
+@primary_btn_bg_disabled: lighten(@primary_btn_bg, 30%);
+
+
+/******************
+    Nav Colours
+*******************/
+
+@nav_item_colour: @main_colour;
+@nav_item_colour_hover: lighten(@nav_item_colour,10%);
+@nav_item_colour_active: @nav_item_colour;
+
+/*******************
+    Form Styles
+********************/
+
+@form_label_colour: @default_text_colour;
+
+@form_input_bg_colour: @white;
+@forn_input_bg_colour_focus: @form_input_bg_colour;
+
+@form_input_border: @greyC;
+@form_input_border_focus: #00c0f2;
+@form_input_border_error: #F00;
+
+@form_input_placeholder_colour: #D6D4CD;
+@form_input_text_colour: #2D2D2D;
+
+/*********************
+    Borders/Shadows/Wrappers
+***********************/
+
+@default_border_colour: #E3E3E3;
+@default_shadow_colour: #DDD;
+
+/*********************
+    Breadcrumbs
+***********************/
+
+@breadcrumb_a_colour: #000000;
+@breadcrumb_a_colour_hover: @main_colour;
+@breadcrumb_span_colour: @breadcrumb_a_colour;
+
+/**********************
+    Alerts
+***************/
+
+@alerts: 'success','info', 'warning', 'error';
+
+@alert_success_bg: #d6e9c6;
+@alert_success_border: #dff0d8;
+@alert_success_colour: #3c763d;
+
+@alert_info_bg: #d9edf7;
+@alert_info_border: #bce8f1;
+@alert_info_colour: #31708f;
+
+@alert_warning_bg: #fcf8e3;
+@alert_warning_border: #faebcc;
+@alert_warning_colour: #8a6d3b;
+
+@alert_error_bg: #f2dede;
+@alert_error_border: #ebccd1;
+@alert_error_colour: #a94442;
+
+
+/*********************
+    Icons
+**********************/
+
+//@icon_font: 'fontname';
+
+// Example below
+//@icon_plus: '\e813';
+
+
+
+/*********************
+    Social Colours
+**********************/
+@twitter: #469dca;
+@facebook: #3c5a96;
+@linkedin: #3c5a96;
+@pinterest: #D02D29;
+
+
+/***********************
+    Widths and Heights
+*************************/
+
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+@padding-base-vertical:     6px;
+@padding-base-horizontal:   12px;
+
+@padding-large-vertical:    10px;
+@padding-large-horizontal:  16px;
+
+@padding-small-vertical:    5px;
+@padding-small-horizontal:  10px;
+
+@padding-xs-vertical:       1px;
+@padding-xs-horizontal:     5px;
+
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+//** Deprecated `@screen-xs` as of v3.0.1
+@screen-xs:                  480px;
+//** Deprecated `@screen-xs-min` as of v3.2.0
+@screen-xs-min:              @screen-xs;
+//** Deprecated `@screen-phone` as of v3.0.1
+@screen-phone:               @screen-xs-min;
+
+// Small screen / tablet
+//** Deprecated `@screen-sm` as of v3.0.1
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+//** Deprecated `@screen-tablet` as of v3.0.1
+@screen-tablet:              @screen-sm-min;
+
+// Medium screen / desktop
+//** Deprecated `@screen-md` as of v3.0.1
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+//** Deprecated `@screen-desktop` as of v3.0.1
+@screen-desktop:             @screen-md-min;
+
+// Large screen / wide desktop
+//** Deprecated `@screen-lg` as of v3.0.1
+@screen-lg:                  1200px;
+@screen-lg-min:              @screen-lg;
+//** Deprecated `@screen-lg-desktop` as of v3.0.1
+@screen-lg-desktop:          @screen-lg-min;
+
+// Extra Large screen / wide desktop
+@screen-xlg:                  1400px;
+@screen-xlg-min:              @screen-xlg;
+//** Deprecated `@screen-lg-desktop` as of v3.0.1
+@screen-xlg-desktop:          @screen-xlg-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+@screen-lg-max:              (@screen-xlg-min - 1);
+
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+@grid-columns:              12;
+//** Padding between columns. Gets divided in half for the left and right.
+@grid-gutter-width:         0;
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+@grid-float-breakpoint:     @screen-sm-min;
+//** Point at which the navbar begins collapsing.
+@grid-float-breakpoint-max: (@grid-float-breakpoint - 1);
+
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+// Small screen / tablet
+@container-tablet:             720px;
+//** For `@screen-sm-min` and up.
+@container-sm:                 @container-tablet;
+
+// Medium screen / desktop
+@container-desktop:            (940px + @grid-gutter-width);
+//** For `@screen-md-min` and up.
+@container-md:                 @container-desktop;
+
+// Large screen / wide desktop
+@container-large-desktop:      (1140px + @grid-gutter-width);
+//** For `@screen-lg-min` and up.
+@container-lg:                 @container-large-desktop;
+
+
+
+

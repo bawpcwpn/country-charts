@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/*****************
+    Common Styles
+*****************/
+
+.clearfix-style {
+    &:after {
+        display: table;
+        content: "";
+        clear: both;
+    }
+}
+
+.clearfix() {
+    &:extend(.clearfix-style all);
+}
+
+
+.clear {
+    clear: both;
+}
+
+/****************
+    Wrappers/Layouts
+*****************/
+
+.wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    .content-box();
+    padding: 0 30px;
+}
+
+.centred {
+    text-align: center;
+}
