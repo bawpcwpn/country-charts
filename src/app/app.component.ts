@@ -37,6 +37,9 @@ export class AppComponent {
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
+        title: {
+            text: ''
+        },
         plotOptions: {
             pie: {
                 allowPointSelect: true,
@@ -49,7 +52,10 @@ export class AppComponent {
         },
         series: [{
             colorByPoint: true,
-            data: []
+            data: [{
+                name: 'Countries',
+                y: 100
+            }]
         }],
     };
 
@@ -261,8 +267,6 @@ export class AppComponent {
             return 0;
         });
 
-        console.log(chartArray);
-
 
         let totalMetric = 0;
         for (let i = 1; i <= this.resultsSelect; i++) {
@@ -270,7 +274,7 @@ export class AppComponent {
 
             totalMetric += (metricName == 'population') ? parseInt(chartItem[metricName]) : parseFloat(parseFloat(metricName).toFixed(2));
         }
-        console.log(totalMetric);
+
         for (let i = 1; i <= this.resultsSelect; i++) {
             let chartItem = chartArray[(i - 1)];
             let percentage = Math.round((((chartItem[metricName] / totalMetric) * 100)+'e2')+'e-2');
@@ -283,7 +287,6 @@ export class AppComponent {
         this.chartOptions.series[0]['data'].push(selectedChartArray);
 
         this.showChart();
-        console.log(this.chartOptions);
 
     }
 

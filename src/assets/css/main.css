@@ -814,16 +814,6 @@ form .form-row .two-thirds:after,
   max-width: 500px;
   width: 100%;
   margin: 50px auto;
-  overflow: hidden;
-  max-height: 0;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  transition: all 0.3s;
-}
-.chart.show {
-  max-height: 600px;
 }
 /***********
     Forms
