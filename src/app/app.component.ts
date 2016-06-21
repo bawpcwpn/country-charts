@@ -12,19 +12,40 @@ export class AppComponent {
 
     contentActive: boolean = false;
     countries: Country[];
+    continents: Array = [];
 
-    constructor(private countriesService: CountriesService) {
-        this.countriesService.getCountries()
-            .then(questions => this.countries = questions);
-    }
+    constructor(private countriesService: CountriesService) {}
 
 
-    setContentActive(value: boolean) {
-        this.contentActive = value;
+    private sortContinents() {
+        console.log('sort continents!');
+
+        // Get list of continents
+        for (let value of this.countries) {
+            if(value.hasOwnProperty('continentName')) {
+                let continentName = value['continentName'];
+                if(this.continents.indexOf(continentName) === -1) {
+                    this.continents.push(continentName);
+                }
+            }
+        }
+
+        // Sort continents alphabetically
+        this.continents.sort();
     }
 
     fetchData() {
-        this.setContentActive(true);
+
+        // Get the countries from the API
+        this.countriesService.getCountries()
+            .then(countries => {
+                console.log('finished!');
+                if(countries.hasOwnProperty('geonames')) {
+                    this.countries = countries['geonames'];
+                }
+                this.sortContinents();
+                this.contentActive = true;
+            });
     }
 
     get isContentActive() {

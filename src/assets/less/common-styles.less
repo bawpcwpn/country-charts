@@ -36,3 +36,48 @@
 .centred {
     text-align: center;
 }
+
+
+
+.results-table {
+    margin: 50px 0;
+
+
+    th, td {
+        padding: 8px 10px;
+        text-align: left;
+    }
+
+    tr {
+        &:nth-child(even) {
+            th,td {
+                background: #F2F2F2;
+            }
+        }
+    }
+
+    thead {
+        tr {
+            th {
+                border-bottom: 2px solid @grey3;
+                &:nth-child(3) {
+                    text-align: right;
+                }
+            }
+        }
+    }
+    tbody {
+        td {
+            &:nth-child(3) {
+                text-align: right;
+            }
+        }
+    }
+    tfoot {
+        tr {
+            td, th {
+                border-top: 1px solid @grey3;
+            }
+        }
+    }
+}

@@ -9,7 +9,7 @@
         <div class="wrapper">
 
             <div class="centred">
-                <button class="btn btn-primary btn-large" *ngIf="!isContentActive" (click)="fetchData()">Go</button>
+                <button class="btn btn-primary btn-large" (click)="fetchData()">Go</button>
             </div>
 
 
@@ -22,6 +22,7 @@
                             <label for="continent">Continent</label>
                             <select id="continent">
                                 <option selected value="all">All</option>
+                                <option *ngFor="let continent of continents" value="{{ continent }}">{{ continent }}</option>
                             </select>
                         </div>
                         <div class="control-group third">
@@ -48,6 +49,31 @@
                 <section class="results">
                     [Pie Chart]
                     [Table]
+
+
+                    <table class="results-table">
+                        <thead>
+                        <tr>
+                            <th>continentName</th>
+                            <th>countryName</th>
+                            <th>population</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>EU</td>
+                            <td>Spain</td>
+                            <td>20</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <th>TOTAL</th>
+                            <td>100</td>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </section>
             </div>
 

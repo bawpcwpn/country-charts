@@ -750,6 +750,31 @@ form .form-row .two-thirds:after,
 .centred {
   text-align: center;
 }
+.results-table {
+  margin: 50px 0;
+}
+.results-table th,
+.results-table td {
+  padding: 8px 10px;
+  text-align: left;
+}
+.results-table tr:nth-child(even) th,
+.results-table tr:nth-child(even) td {
+  background: #F2F2F2;
+}
+.results-table thead tr th {
+  border-bottom: 2px solid #333333;
+}
+.results-table thead tr th:nth-child(3) {
+  text-align: right;
+}
+.results-table tbody td:nth-child(3) {
+  text-align: right;
+}
+.results-table tfoot tr td,
+.results-table tfoot tr th {
+  border-top: 1px solid #333333;
+}
 /***********
     Forms
 ***********/

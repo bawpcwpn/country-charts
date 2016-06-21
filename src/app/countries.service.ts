@@ -11,7 +11,7 @@ export class CountriesService {
 
     constructor(private http: Http) { }
 
-    getCountries(): Promise<Country[]> {
+    getCountries(): Promise {
         return this.http.get(this.apiUrl).toPromise()
             .then(response => response.json());
     }
