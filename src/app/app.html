@@ -9,7 +9,7 @@
         <div class="wrapper">
 
             <div class="centred">
-                <button class="btn btn-primary btn-large" (click)="fetchData()" *ngIf="!contentActive">Go</button>
+                <button class="btn btn-primary btn-large" [disabled]="disabledBtn" (click)="fetchData()" *ngIf="!contentActive">Go</button>
             </div>
 
 

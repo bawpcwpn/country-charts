@@ -24,6 +24,8 @@ export class AppComponent {
     areaColVisible = true;
     populationColVisible = true;
 
+    disabledBtn = false;
+
     chartVisible = false;
     chartOptions = {
         chart: {
@@ -70,6 +72,8 @@ export class AppComponent {
     }
 
     fetchData() {
+
+        this.disabledBtn = true;
 
         // Get the countries from the API
         this.countriesService.getCountries()
@@ -190,8 +194,8 @@ export class AppComponent {
             totalArea += parseFloat(value.areaInSqKm);
         }
 
-        this.totalPopulation = totalPopulation.toFixed(0);
-        this.areaInSqKmTotal = totalArea.toFixed(2);
+        this.totalPopulation = parseInt(totalPopulation.toFixed(0));
+        this.areaInSqKmTotal = parseFloat(totalArea.toFixed(2));
 
     }
 
@@ -226,35 +230,62 @@ export class AppComponent {
     updateChart() {
 
         let chartArray = [];
+        let selectedChartArray = [];
         let metricName = this.metricSelect;
-        let chartData = this.chartOptions.series['data'];
 
         for (let value of this.filteredCountries) {
-            if(value.hasOwnProperty(metricName)) {
+            if (value.hasOwnProperty(metricName)) {
                 chartArray.push(value);
             }
         }
 
-        chartArray.sort(function(a,b){
-            return a[metricName] - b[metricName];
+
+        chartArray.sort(function (a, b) {
+
+            let aVal,
+                bVal;
+
+            if (metricName = 'population') {
+                aVal = parseInt(a[metricName]);
+                bVal = parseInt(b[metricName]);
+            } else {
+                aVal = parseFloat(metricName);
+                bVal = parseFloat(metricName);
+            }
+
+            if (aVal < bVal) {
+                return 1;
+            } else if (aVal > bVal) {
+                return -1;
+            }
+            return 0;
         });
+
+        console.log(chartArray);
+
 
         let totalMetric = 0;
         for (let i = 1; i <= this.resultsSelect; i++) {
-            let chartItem = chartArray[i];
-            totalMetric += metricName = 'population' ? parseInt(chartItem[metricName]) : parseFloat(parseFloat(metricName).toFixed(2));
+            let chartItem = chartArray[(i - 1)];
+
+            totalMetric += (metricName == 'population') ? parseInt(chartItem[metricName]) : parseFloat(parseFloat(metricName).toFixed(2));
         }
+        console.log(totalMetric);
         for (let i = 1; i <= this.resultsSelect; i++) {
-            let chartItem = chartArray[i];
-            let percentage = (chartItem[metricName] / totalMetric) * 100;
-           chartData.push({
+            let chartItem = chartArray[(i - 1)];
+            let percentage = Math.round((((chartItem[metricName] / totalMetric) * 100)+'e2')+'e-2');
+            selectedChartArray.push({
                 name: chartItem.countryName,
                 y: percentage
             });
         }
 
+        this.chartOptions.series[0]['data'].push(selectedChartArray);
+
         this.showChart();
         console.log(this.chartOptions);
+
+    }
 
 
 }
