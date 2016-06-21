@@ -4,13 +4,16 @@
     var map = {
         'app': 'app', // 'dist',
         'rxjs': 'lib/rxjs',
-        '@angular': 'lib/@angular'
+        '@angular': 'lib/@angular',
+        'angular2-highcharts': 'lib/angular2-highcharts'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
         'app': {main: 'main.js', defaultExtension: 'js'},
-        'rxjs': {defaultExtension: 'js'}
+        'rxjs': {defaultExtension: 'js'},
+        'angular2-highcharts': {main: 'index.js', defaultExtension: 'js'},
+        'highcharts/highstock.src.js': 'lib/angular2-highcharts/node_module/highcharts/highstock.js'
     };
 
     var packageNames = [

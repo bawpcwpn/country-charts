@@ -3,11 +3,12 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { Country } from './country';
 import { CountriesService } from './countries.service';
 import {InfiniteScroll} from './directives/infinitescroll';
+import { CHART_DIRECTIVES } from 'angular2-highcharts';
 
 @Component({
     selector: 'app',
     providers: [HTTP_PROVIDERS, CountriesService],
-    directives: [InfiniteScroll],
+    directives: [InfiniteScroll, CHART_DIRECTIVES],
     templateUrl: "./app/app.html",
 })
 export class AppComponent {
@@ -22,6 +23,56 @@ export class AppComponent {
 
     areaColVisible = true;
     populationColVisible = true;
+
+    chartOptions = {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Browser market shares January, 2015 to May, 2015'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                name: 'Microsoft Internet Explorer',
+                y: 56.33
+            }, {
+                name: 'Chrome',
+                y: 24.03,
+                sliced: true,
+                selected: true
+            }, {
+                name: 'Firefox',
+                y: 10.38
+            }, {
+                name: 'Safari',
+                y: 4.77
+            }, {
+                name: 'Opera',
+                y: 0.91
+            }, {
+                name: 'Proprietary or Undetectable',
+                y: 0.2
+            }]
+        }],
+    };
 
     constructor(private countriesService: CountriesService) {}
 
@@ -52,6 +103,7 @@ export class AppComponent {
                 this.sortContinents();
                 this.contentActive = true;
                 this.filterResults();
+                this.updateChart();
             });
     }
 
@@ -66,12 +118,6 @@ export class AppComponent {
     get getAreaInSqKmTotal() {
         return this.areaInSqKmTotal;
     }
-
-
-    moreTableResults() {
-        console.log('more results!');
-    }
-
 
     /***
      *  Select Components
@@ -113,6 +159,9 @@ export class AppComponent {
     }
 
 
+    /**
+     * Check which column is active
+     */
     checkWhichColActive() {
         switch(this.metricSelect) {
             case 'all':
@@ -131,6 +180,9 @@ export class AppComponent {
     }
 
 
+    /**
+     *  Filter Results
+     */
     filterResults() {
 
         if(this.continentSelect != 'all') {
@@ -165,7 +217,15 @@ export class AppComponent {
     }
 
 
+    /**
+     * Update Table
+     * @param field
+     */
     sortTable(field: string) {
+
+    }
+    
+    updateChart() {
         
     }
 

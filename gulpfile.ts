@@ -68,7 +68,8 @@ gulp.task("libs", () => {
             'rxjs/**',
             'zone.js/dist/**',
             '@angular/**',
-            'ng2-infinitescroll/directives/**'
+            'ng2-infinitescroll/directives/**',
+            'angular2-highcharts/**',
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });
