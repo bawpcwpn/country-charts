@@ -60,17 +60,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>EU</td>
-                            <td>Spain</td>
-                            <td>20</td>
+                        <tr *ngFor="let country of sortedCountries">
+                            <td>{{ country.countryCode }}</td>
+                            <td>{{ country.countryName }}</td>
+                            <td>{{ country.population }}</td>
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr>
                             <td>&nbsp;</td>
                             <th>TOTAL</th>
-                            <td>100</td>
+                            <td>{{ totalPopulation }}</td>
                         </tr>
                         </tfoot>
                     </table>

@@ -12,7 +12,9 @@ export class AppComponent {
 
     contentActive: boolean = false;
     countries: Country[];
+    sortedCountries: Country[];
     continents: Array = [];
+    totalPopulation = 0;
 
     constructor(private countriesService: CountriesService) {}
 
@@ -42,6 +44,7 @@ export class AppComponent {
                 console.log('finished!');
                 if(countries.hasOwnProperty('geonames')) {
                     this.countries = countries['geonames'];
+                    this.sortedCountries = this.countries;
                 }
                 this.sortContinents();
                 this.contentActive = true;
@@ -50,6 +53,10 @@ export class AppComponent {
 
     get isContentActive() {
         return this.contentActive !== undefined;
+    }
+
+    get getTotalPopulation() {
+        return this.totalPopulation;
     }
 
 }

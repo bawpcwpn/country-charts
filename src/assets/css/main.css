@@ -775,6 +775,10 @@ form .form-row .two-thirds:after,
 .results-table tfoot tr th {
   border-top: 1px solid #333333;
 }
+.results-table tfoot tr td:last-child,
+.results-table tfoot tr th:last-child {
+  text-align: right;
+}
 /***********
     Forms
 ***********/
