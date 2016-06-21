@@ -24,15 +24,13 @@ export class AppComponent {
     areaColVisible = true;
     populationColVisible = true;
 
+    chartVisible = false;
     chartOptions = {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
             type: 'pie'
-        },
-        title: {
-            text: 'Browser market shares January, 2015 to May, 2015'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -48,29 +46,8 @@ export class AppComponent {
             }
         },
         series: [{
-            name: 'Brands',
             colorByPoint: true,
-            data: [{
-                name: 'Microsoft Internet Explorer',
-                y: 56.33
-            }, {
-                name: 'Chrome',
-                y: 24.03,
-                sliced: true,
-                selected: true
-            }, {
-                name: 'Firefox',
-                y: 10.38
-            }, {
-                name: 'Safari',
-                y: 4.77
-            }, {
-                name: 'Opera',
-                y: 0.91
-            }, {
-                name: 'Proprietary or Undetectable',
-                y: 0.2
-            }]
+            data: []
         }],
     };
 
@@ -103,7 +80,6 @@ export class AppComponent {
                 this.sortContinents();
                 this.contentActive = true;
                 this.filterResults();
-                this.updateChart();
             });
     }
 
@@ -167,14 +143,17 @@ export class AppComponent {
             case 'all':
                 this.areaColVisible = true;
                 this.populationColVisible = true;
+                this.hideChart();
                 break;
             case 'areaInSqKm':
                 this.areaColVisible = true;
                 this.populationColVisible = false;
+                this.updateChart();
                 break;
             case 'population':
                 this.populationColVisible = true;
                 this.areaColVisible = false;
+                this.updateChart();
                 break;
         }
     }
@@ -224,9 +203,58 @@ export class AppComponent {
     sortTable(field: string) {
 
     }
-    
-    updateChart() {
-        
+
+
+    /**
+     * hide Chart
+     */
+    hideChart() {
+        this.chartVisible = false;
     }
+
+    /**
+     * Show Chart
+     */
+    
+    showChart() {
+        this.chartVisible = true;
+    }
+
+    /**
+     *  Update CHart
+     */
+    updateChart() {
+
+        let chartArray = [];
+        let metricName = this.metricSelect;
+        let chartData = this.chartOptions.series['data'];
+
+        for (let value of this.filteredCountries) {
+            if(value.hasOwnProperty(metricName)) {
+                chartArray.push(value);
+            }
+        }
+
+        chartArray.sort(function(a,b){
+            return a[metricName] - b[metricName];
+        });
+
+        let totalMetric = 0;
+        for (let i = 1; i <= this.resultsSelect; i++) {
+            let chartItem = chartArray[i];
+            totalMetric += metricName = 'population' ? parseInt(chartItem[metricName]) : parseFloat(parseFloat(metricName).toFixed(2));
+        }
+        for (let i = 1; i <= this.resultsSelect; i++) {
+            let chartItem = chartArray[i];
+            let percentage = (chartItem[metricName] / totalMetric) * 100;
+           chartData.push({
+                name: chartItem.countryName,
+                y: percentage
+            });
+        }
+
+        this.showChart();
+        console.log(this.chartOptions);
+
 
 }

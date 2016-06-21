@@ -9,11 +9,11 @@
         <div class="wrapper">
 
             <div class="centred">
-                <button class="btn btn-primary btn-large" (click)="fetchData()">Go</button>
+                <button class="btn btn-primary btn-large" (click)="fetchData()" *ngIf="!contentActive">Go</button>
             </div>
 
 
-            <div *ngIf="isContentActive">
+            <div *ngIf="contentActive">
                 <h4>Filters</h4>
 
                 <div class="form">
@@ -48,7 +48,7 @@
 
                 <section class="results">
 
-                    <div class="chart">
+                    <div class="chart" [class.show]="chartVisible">
                         <chart [options]="chartOptions"></chart>
                     </div>
 

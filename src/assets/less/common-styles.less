@@ -106,3 +106,22 @@
         }
     }
 }
+
+
+
+/*******************
+    Chart
+********************/
+
+.chart {
+    max-width: 500px;
+    width: 100%;
+    margin: 50px auto;
+    overflow: hidden;
+    max-height: 0;
+    .transition(all,0.3s);
+
+    &.show {
+        max-height: 600px;
+    }
+}
